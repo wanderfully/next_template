@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+{% set html_class = 'theme-next ' + theme.scheme %}
+{% if theme.use_motion %}
+  {% set html_class = html_class + ' use-motion' %}
+{% endif %}
+
+<html class="{{ html_class | lower }}" lang="{{ config.language }}">
+<head>
+  {% include '_partials/head.swig' %}
+  <title>{% block title %}{% endblock %}</title>
+  {% include '_third-party/analytics/index.swig' %}
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
+
+  {% set container_class = "container " %}
+  {% if theme.sidebar.position %}
+    {% set container_class = container_class + 'sidebar-position-' + theme.sidebar.position %}
+  {% endif %}
+
+  <div class="{{ container_class }} {% block page_class %}{% endblock %} ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wanderfully" style="position:absolute;right:0;top:0;transform:rotateZ(90deg);border-bottom:none;"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> {%- include '_partials/header.swig' %} </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            {% block content %}{% endblock %}
+          </div>
+          {% include '_third-party/duoshuo-hot-articles.swig' %}
+          {% include '_partials/comments.swig' %}
+        </div>
+        {% if theme.sidebar.display !== 'remove' %}
+          {% block sidebar %}{% endblock %}
+        {% endif %}
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        {% include '_partials/footer.swig' %}
+        {% include '_third-party/analytics/busuanzi-counter.swig' %}
+        {% block footer %}{% endblock %}
+      </div>
+    </footer>
+
+    {% if not theme.sidebar.b2t %}
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        {% if theme.sidebar.scrollpercent %}
+          <span id="scrollpercent"><span>0</span>%</span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+
+  {% include '_scripts/vendors.swig' %}
+  {% include '_scripts/commons.swig' %}
+
+  {% set scheme_script = '_scripts/schemes/' + theme.scheme | lower + '.swig' %}
+  {% include scheme_script %}
+
+  {% block script_extra %}
+    {% include '_scripts/pages/post-details.swig' %}
+  {% endblock %}
+
+  {% include '_scripts/boostrap.swig' %}
+
+  {% include '_third-party/comments/index.swig' %}
+  {% include '_third-party/search/index.swig' %}
+  {% include '_third-party/analytics/lean-analytics.swig' %}
+  {% include '_third-party/seo/baidu-push.swig' %}
+  {% include '_third-party/rating.swig' %}
+  {% include '_third-party/mathjax.swig' %}
+  {% include '_third-party/scroll-cookie.swig' %}
+  {% include '_third-party/exturl.swig' %}
+
+  {% if theme.fireworks %}
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  {% endif %}
+</body>
+  <script src="/live2d-widget/autoload.js"></script>
+</html>
+
