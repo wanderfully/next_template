@@ -8,7 +8,6 @@
         </a>
       </div>
     {% endif %}
-
     <div class="custom-logo-site-title">
       <a href="{{ config.root }}"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
@@ -73,4 +72,4 @@
   {% endif %}
 </nav>
 
-{% include '../_custom/header.swig' %}
+{% include '../_custom/header.swig' %}  

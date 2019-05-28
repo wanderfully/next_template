@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: wander
+title: <div>wander<div>写鬼写妖高人一筹<div><div>刺贪刺虐入目三分</div></div>
 subtitle:
-description: "写鬼写妖高人一筹，刺贪刺虐入目三分" #网站描述 SEO
+description: "" #网站描述 SEO
 keywords:
 author: wander
 language: zh-Hans
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
